@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using PRN221_Project.Models;
 
 namespace PRN221_Project
@@ -9,13 +11,16 @@ namespace PRN221_Project
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            builder.Services.AddRazorPages();
+
+           
+
+            builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
             builder.Services.AddDbContext<POSTContext>(opt =>
             {
                 opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 
+           
 
 
             var app = builder.Build();
@@ -32,9 +37,10 @@ namespace PRN221_Project
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseAuthorization();
-
+            app.MapRazorPages();
             app.MapRazorPages();
 
             app.Run();

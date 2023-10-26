@@ -105,7 +105,6 @@ C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project\bin\Debug
 C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project\bin\Debug\net6.0\refs\Microsoft.Extensions.Features.dll
 C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project\bin\Debug\net6.0\refs\Microsoft.Extensions.FileProviders.Abstractions.dll
 C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project\bin\Debug\net6.0\refs\Microsoft.Extensions.FileProviders.Composite.dll
-C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project\bin\Debug\net6.0\refs\Microsoft.Extensions.FileProviders.Embedded.dll
 C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project\bin\Debug\net6.0\refs\Microsoft.Extensions.FileProviders.Physical.dll
 C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project\bin\Debug\net6.0\refs\Microsoft.Extensions.FileSystemGlobbing.dll
 C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project\bin\Debug\net6.0\refs\Microsoft.Extensions.Hosting.Abstractions.dll
@@ -567,3 +566,5 @@ C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project\obj\Debug
 C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project\obj\Debug\net6.0\PRN221_Project.pdb
 C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project\obj\Debug\net6.0\PRN221_Project.genruntimeconfig.cache
 C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project\obj\Debug\net6.0\ref\PRN221_Project.dll
+C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.UI.dll
+C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Embedded.dll

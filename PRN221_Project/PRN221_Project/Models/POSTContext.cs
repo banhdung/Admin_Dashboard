@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace PRN221_Project.Models
 {
-    public partial class POSTContext : DbContext
+    public partial class POSTContext : IdentityDbContext
     {
         public POSTContext()
         {
@@ -38,6 +39,7 @@ namespace PRN221_Project.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Account>(entity =>
             {
                 entity.ToTable("Account");

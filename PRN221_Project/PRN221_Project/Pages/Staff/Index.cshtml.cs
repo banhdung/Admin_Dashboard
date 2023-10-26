@@ -5,8 +5,18 @@ namespace PRN221_Project.Pages.Staff
 {
     public class IndexModel : PageModel
     {
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            string userCookie = Request.Cookies["Role"];
+            if (userCookie.Equals("2"))
+            {
+                return Page();
+            }
+            else
+            {
+                return RedirectToPage("/login");
+            }
         }
     }
+    
 }
