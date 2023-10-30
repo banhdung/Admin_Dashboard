@@ -52,7 +52,7 @@ namespace PRN221_Project.Pages.Admin
                 TempData["success"] = "Login successfully";
                 var userRole = account.Role;
                 Response.Cookies.Append("Role", userRole.ToString());
-                Response.Cookies.Append("Username", Username);
+                Response.Cookies.Append("Username", account.Fullname);
                 DateTime expirationDate = DateTime.Now.AddSeconds(30);
 
                 CookieOptions options = new CookieOptions

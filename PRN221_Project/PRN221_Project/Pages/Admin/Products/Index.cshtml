@@ -1,0 +1,112 @@
+﻿@page
+@model PRN221_Project.Pages.Admin.Products.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Products</h1>
+<input type="text" id="searchTerm" placeholder="Enter product name ..." />
+<button type="button" onclick="search()">Search</button>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table" id="dataTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].ProductCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].UnitInStock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].UnitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].DiscountPercentage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].ReorderLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].AccountId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].Unit)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Product) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitInStock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiscountPercentage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReorderLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Unit.UnitId)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ProductId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ProductId">Details</a> 
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<script>
+    function search() {
+        var input = document.getElementById("searchTerm");
+        var filter = input.value.toUpperCase();
+        var table = document.getElementById("dataTable");
+        var rows = table.getElementsByTagName("tr");
+        for (var i = 0; i < rows.length; i++) {
+            var cells = rows[i].getElementsByTagName("td");
+            var found = false;
+            for (var j = 0; j < cells.length; j++) {
+                var cellText = cells[j].textContent || cells[j].innerText;
+                if (cellText.toUpperCase().indexOf(filter) > -1) {
+                    found = true;
+                    break;
+                }
+            }
+            rows[i].style.display = found ? "" : "none";
+        }
+    }
+
+    // Gán sự kiện cho thanh tìm kiếm
+    var searchInput = document.getElementById("searchTerm");
+    searchInput.addEventListener("keyup", search);
+</script>
+

@@ -1,0 +1,66 @@
+﻿@page
+@model PRN221_Project.Pages.Admin.Employee.IndexModel
+
+@{
+    ViewData["Title"] = "Employee";
+}
+
+<h1>Employee</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Account[0].Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account[0].Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account[0].Fullname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account[0].Designation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account[0].Contact)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account[0].Role)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Account) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fullname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Designation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contact)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.AccountId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.AccountId">Details</a> 
+          
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

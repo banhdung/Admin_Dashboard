@@ -5,13 +5,13 @@ using System.Data;
 
 namespace PRN221_Project.Pages.Admin
 {
-    
+
 
     public class IndexModel : PageModel
     {
         public IActionResult OnGet()
         {
-            string userCookie = Request.Cookies["Role"];
+            string ?userCookie = Request.Cookies["Role"];
             if (userCookie.Equals("1"))
             {
                 return Page();

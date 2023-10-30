@@ -568,3 +568,9 @@ C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project\obj\Debug
 C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project\obj\Debug\net6.0\ref\PRN221_Project.dll
 C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.UI.dll
 C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Embedded.dll
+C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project\bin\Debug\net6.0\refs\Microsoft.Extensions.FileProviders.Embedded.dll
+C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project\bin\Debug\net6.0\refs\Microsoft.Extensions.Identity.Core.dll
+C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project\bin\Debug\net6.0\refs\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project\bin\Debug\net6.0\refs\System.Diagnostics.DiagnosticSource.dll

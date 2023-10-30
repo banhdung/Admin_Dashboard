@@ -14,5 +14,10 @@ namespace PRN221_Project.Services
             Account account = _context.Accounts.FirstOrDefault(a => a.Username == userName && a.Password == password);
             return account;
         }
+        
+        public Account getAccountByUserName(string userName) {
+            Account account = _context.Accounts.FirstOrDefault(a => a.Username == userName);
+            return account;
+        }
     }
 }

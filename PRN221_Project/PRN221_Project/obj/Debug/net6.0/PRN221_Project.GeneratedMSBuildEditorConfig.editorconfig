@@ -16,12 +16,40 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = C:\Users\banhdung\Desktop\PRN221_Project\PRN221_Project\PRN221_Project
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/banhdung/Desktop/PRN221_Project/PRN221_Project/PRN221_Project/Pages/Admin/Employees/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRW1wbG95ZWVzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/banhdung/Desktop/PRN221_Project/PRN221_Project/PRN221_Project/Pages/Admin/Employees/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRW1wbG95ZWVzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/banhdung/Desktop/PRN221_Project/PRN221_Project/PRN221_Project/Pages/Admin/Employees/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRW1wbG95ZWVzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/banhdung/Desktop/PRN221_Project/PRN221_Project/PRN221_Project/Pages/Admin/Employees/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRW1wbG95ZWVzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/banhdung/Desktop/PRN221_Project/PRN221_Project/PRN221_Project/Pages/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/banhdung/Desktop/PRN221_Project/PRN221_Project/PRN221_Project/Pages/Admin/Register.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUmVnaXN0ZXIuY3NodG1s
+[C:/Users/banhdung/Desktop/PRN221_Project/PRN221_Project/PRN221_Project/Pages/Admin/Products/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUHJvZHVjdHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/banhdung/Desktop/PRN221_Project/PRN221_Project/PRN221_Project/Pages/Admin/Products/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUHJvZHVjdHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/banhdung/Desktop/PRN221_Project/PRN221_Project/PRN221_Project/Pages/Admin/Products/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUHJvZHVjdHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/banhdung/Desktop/PRN221_Project/PRN221_Project/PRN221_Project/Pages/Admin/Products/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUHJvZHVjdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/banhdung/Desktop/PRN221_Project/PRN221_Project/PRN221_Project/Pages/Error.cshtml]
