@@ -4,14 +4,15 @@
 @{
     ViewData["Title"] = "Index";
 }
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="~/css/rootcss.css" />
 <h1>Products</h1>
-<input type="text" id="searchTerm" placeholder="Enter product name ..." />
-<button type="button" onclick="search()">Search</button>
-
+<input class=" form-control-sm border border-primary rounded-pill" type="text" id="searchTerm" placeholder="Enter product name ..." />
+<button class="btn btn-secondary text-decoration-none" type="button" onclick="search()">Search</button>
 <p>
-    <a asp-page="Create">Create New</a>
+    <a class="btn btn-primary" asp-page="Create">Create New</a>
 </p>
+<a href="/admin">Back to overview</a>
 <table class="table" id="dataTable">
     <thead>
         <tr>
@@ -76,9 +77,9 @@
                 @Html.DisplayFor(modelItem => item.Unit.UnitId)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ProductId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ProductId">Details</a> 
-                
+                    <a class="text-decoration-none" asp-page="./Edit" asp-route-id="@item.ProductId"> <i class="bi bi-pencil-fill"></i> Edit</a> |
+                    <a class="text-decoration-none" asp-page="./Details" asp-route-id="@item.ProductId"> Details <i class="bi bi-list"></i></a>
+
             </td>
         </tr>
 }
@@ -91,7 +92,7 @@
         var filter = input.value.toUpperCase();
         var table = document.getElementById("dataTable");
         var rows = table.getElementsByTagName("tr");
-        for (var i = 0; i < rows.length; i++) {
+        for (var i = 1; i < rows.length; i++) {
             var cells = rows[i].getElementsByTagName("td");
             var found = false;
             for (var j = 0; j < cells.length; j++) {

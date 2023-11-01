@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lh/o5fVl1MZk4jJQDbfmLdtI823sTJQZYmsOfkPgQCZm7eiC4jRYLQsVNN4vmdkTru4DtmbM6g0j3+d1L2jQtw==",
+  "dgSpecHash": "fYaP7HkJuwz4zSyKZk9ITlnhSkmODVg9GNgeyHbPMsApASRXB+GR8AZjEYU462eInGF6m9NUms+/LSiknbSRKg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\banhdung\\Desktop\\PRN221_Project\\PRN221_Project\\PRN221_Project\\PRN221_Project.csproj",
+  "projectFilePath": "C:\\Users\\banhdung\\Desktop\\FU Learning\\Ki7\\PRN221\\PRN221_Project\\PRN221_Project\\PRN221_Project\\PRN221_Project.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\banhdung\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\banhdung\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",

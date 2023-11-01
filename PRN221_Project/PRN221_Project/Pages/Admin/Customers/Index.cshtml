@@ -1,12 +1,12 @@
 ﻿@page
-@model PRN221_Project.Pages.Admin.Employee.IndexModel
+@model PRN221_Project.Pages.Customers.IndexModel
 
 @{
-    ViewData["Title"] = "Employee";
+    ViewData["Title"] = "Customers";
 }
 <link rel="stylesheet" href="~/css/rootcss.css" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
-<h1>Employee</h1>
+<h1>Index</h1>
 
 
 <input class=" form-control-sm border border-primary rounded-pill" type="text" id="searchTerm" placeholder="Enter employees name ..." />
@@ -19,50 +19,44 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Account[0].Username)
+                @Html.DisplayNameFor(model => model.Customer[0].CustomerCode)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Account[0].Password)
+                @Html.DisplayNameFor(model => model.Customer[0].CustomerName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Account[0].Fullname)
+                @Html.DisplayNameFor(model => model.Customer[0].Contact)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Account[0].Designation)
+                @Html.DisplayNameFor(model => model.Customer[0].Address)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Account[0].Contact)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Account[0].Role)
+                @Html.DisplayNameFor(model => model.Customer[0].Point)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Account) {
+@foreach (var item in Model.Customer) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Username)
+                @Html.DisplayFor(modelItem => item.CustomerCode)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fullname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Designation)
+                @Html.DisplayFor(modelItem => item.CustomerName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Contact)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Role)
+                @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
-                    <a class="text-decoration-none" asp-page="./Edit" asp-route-id="@item.AccountId"> <i class="bi bi-pencil-fill"></i> Edit</a> |
-                    <a class="text-decoration-none" asp-page="./Details" asp-route-id="@item.AccountId"> Details <i class="bi bi-list"></i></a>
+                @Html.DisplayFor(modelItem => item.Point)
+            </td>
+            <td>
+                    <a class="text-decoration-none" asp-page="./Edit" asp-route-id="@item.CustomerId"> <i class="bi bi-pencil-fill"></i> Edit</a> |
+                    <a class="text-decoration-none" asp-page="./Details" asp-route-id="@item.CustomerId"> Details <i class="bi bi-list"></i></a>
 
             </td>
         </tr>
