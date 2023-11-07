@@ -37,6 +37,7 @@ namespace PRN221_Project.Pages.Admin.Supplliers
 
             _context.Suppliers.Add(Supplier);
             await _context.SaveChangesAsync();
+            TempData["success"] = "Create successfully";
 
             return RedirectToPage("./Index");
         }

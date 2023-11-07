@@ -54,6 +54,7 @@ namespace PRN221_Project.Pages.Admin.Supplliers
                 Supplier = supplier;
                 _context.Suppliers.Remove(Supplier);
                 await _context.SaveChangesAsync();
+                TempData["success"] = "Delete successfully";
             }
 
             return RedirectToPage("./Index");

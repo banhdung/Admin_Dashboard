@@ -79,7 +79,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Today Revenue</h5>
-                        <p class="card-text">1000 USD</p>
+                        <p class="card-text">@Model.dayRevenue(DateTime.Now.Date)</p>
                     </div>
                 </div>
             </div>
@@ -169,33 +169,44 @@
             type: "line",
             data: {
                 labels: [
-                    "Day 1",
-                    "Day 2",
-                    "Day 3",
-                    "Day 4",
-                    "Day 5",
-                    "Day 6",
-                    "Day 7",
-                    "Day 8",
-                    "Day 9",
-                    "Day 10",
-                    "Day 11",
-                    "Day 12",
-                    "Day 13",
-                    "Day14",
-                    "Day 15",
-                    "Day 16",
-                    "Day 17",
-                    "Day 18",
-                    "Day 19",
-                    "Day 20",
+               
+                    "Day @DateTime.Now.AddDays(-15).Day",
+                    "Day @DateTime.Now.AddDays(-14).Day ",
+                    "Day @DateTime.Now.AddDays(-13).Day ",
+                    "Day @DateTime.Now.AddDays(-12).Day",
+                    "Day @DateTime.Now.AddDays(-11).Day ",
+                    "Day @DateTime.Now.AddDays(-10).Day",
+                    "Day @DateTime.Now.AddDays(-9).Day ",
+                    "Day @DateTime.Now.AddDays(-8).Day ",
+                    "Day @DateTime.Now.AddDays(-7).Day ",
+                    "Day @DateTime.Now.AddDays(-6).Day",
+                    "Day @DateTime.Now.AddDays(-5).Day ",
+                    "Day @DateTime.Now.AddDays(-4).Day ",
+                    "Day @DateTime.Now.AddDays(-3).Day ",
+                    "Day @DateTime.Now.AddDays(-2).Day ",
+                    "Day @DateTime.Now.AddDays(-1).Day ",
+                    "Day @DateTime.Now.Day",
                 ],
                 datasets: [
                     {
-                        label: "Revenue",
+                        label: "Revenue Day",
                         data: [
-                            100, 200, 150, 300, 250, 200, 400, 350, 300, 200, 150, 250,
-                            350, 400, 450, 500, 550, 600, 650, 700,
+    @Model.dayRevenue(DateTime.Now.AddDays(-15).Date),
+    @Model.dayRevenue(DateTime.Now.AddDays(-14).Date) ,
+    @Model.dayRevenue(DateTime.Now.AddDays(-13).Date),
+    @Model.dayRevenue(DateTime.Now.AddDays(-12).Date),
+    @Model.dayRevenue(DateTime.Now.AddDays(-11).Date),
+    @Model.dayRevenue(DateTime.Now.AddDays(-10).Date),
+    @Model.dayRevenue(DateTime.Now.AddDays(-9).Date),
+    @Model.dayRevenue(DateTime.Now.AddDays(-8).Date),
+    @Model.dayRevenue(DateTime.Now.AddDays(-7).Date),
+    @Model.dayRevenue(DateTime.Now.AddDays(-6).Date),
+    @Model.dayRevenue(DateTime.Now.AddDays(-5).Date),
+    @Model.dayRevenue(DateTime.Now.AddDays(-4).Date),
+    @Model.dayRevenue(DateTime.Now.AddDays(-3).Date),
+    @Model.dayRevenue(DateTime.Now.AddDays(-2).Date),
+    @Model.dayRevenue(DateTime.Now.AddDays(-1).Date),
+    @Model.dayRevenue(DateTime.Now.Date),
                         ],
                         backgroundColor: "rgba(0, 123, 255, 0.5)",
                         borderColor: "rgba(0, 123, 255, 1)",
@@ -219,10 +230,10 @@
         var monthlyChart = new Chart(monthlyCtx, {
             type: "bar",
             data: {
-                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+                labels: ["@DateTime.Now.AddMonths(-5).Month", "@DateTime.Now.AddMonths(-4).Month", "@DateTime.Now.AddMonths(-3).Month", "@DateTime.Now.AddMonths(-2).Month", "@DateTime.Now.AddMonths(-1).Month", "@DateTime.Now.Month"],
                 datasets: [
                     {
-                        label: "Revenue",
+                        label: "Revenue Month",
                         data: [1000, 1500, 1200, 1800, 2000, 1700],
                         backgroundColor: [
                             "rgba(255, 99, 132, 0.5)",

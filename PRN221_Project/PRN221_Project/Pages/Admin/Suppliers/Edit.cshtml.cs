@@ -52,6 +52,7 @@ namespace PRN221_Project.Pages.Admin.Supplliers
             try
             {
                 await _context.SaveChangesAsync();
+                TempData["success"] = "Edit successfully";
             }
             catch (DbUpdateConcurrencyException)
             {
