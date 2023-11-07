@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using PRN221_Project.Models;
 
-namespace PRN221_Project.Pages.Admin.Products
+namespace PRN221_Project.Pages.Admin.Supplliers
 {
     public class DetailsModel : PageModel
     {
@@ -18,23 +18,23 @@ namespace PRN221_Project.Pages.Admin.Products
             _context = context;
         }
 
-      public Product Product { get; set; } = default!; 
+      public Supplier Supplier { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Products == null)
+            if (id == null || _context.Suppliers == null)
             {
                 return NotFound();
             }
 
-            var product = await _context.Products.Include(x=>x.Category).Include(x =>x.Unit).FirstOrDefaultAsync(m => m.ProductId == id);
-            if (product == null)
+            var supplier = await _context.Suppliers.FirstOrDefaultAsync(m => m.SupplierId == id);
+            if (supplier == null)
             {
                 return NotFound();
             }
             else 
             {
-                Product = product;
+                Supplier = supplier;
             }
             return Page();
         }

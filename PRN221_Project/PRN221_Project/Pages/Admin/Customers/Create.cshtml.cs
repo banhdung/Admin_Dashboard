@@ -37,6 +37,7 @@ namespace PRN221_Project.Pages.Customers
 
             _context.Customers.Add(Customer);
             await _context.SaveChangesAsync();
+            TempData["success"] = "Create successfully";
 
             return RedirectToPage("./Index");
         }

@@ -46,13 +46,13 @@ namespace PRN221_Project
                     {
                         if (roleValue != "1")
                         {
-                            context.Response.Redirect("/index");
+                            context.Response.Redirect("/staff");
                             return;
                         }
                     }
                     else
                     {
-                        context.Response.Redirect("/index");
+                        context.Response.Redirect("/login");
                         return;
                     }
                 }
@@ -60,11 +60,11 @@ namespace PRN221_Project
                 await next.Invoke();
             });
             app.UseAuthentication();
-
             app.UseAuthorization();
             
+            
             app.MapRazorPages();
-            app.MapRazorPages();
+         
            
             app.Run();
         }

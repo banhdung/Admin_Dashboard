@@ -20,6 +20,7 @@ namespace PRN221_Project.Pages.Admin
             {
                 return RedirectToPage("/login");
             }
+
         }
     }
 }

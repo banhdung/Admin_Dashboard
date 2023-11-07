@@ -20,8 +20,8 @@ namespace PRN221_Project.Pages.Admin.Products
 
         public IActionResult OnGet()
         {
-        ViewData["CategoryId"] = new SelectList(_context.ProductCategories, "CategoryId", "CategoryId");
-        ViewData["UnitId"] = new SelectList(_context.ProductUnits, "UnitId", "UnitId");
+        ViewData["CategoryId"] = new SelectList(_context.ProductCategories, "CategoryId", "CategoryName");
+        ViewData["UnitId"] = new SelectList(_context.ProductUnits, "UnitId", "UnitName");
             return Page();
         }
 

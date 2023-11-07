@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\banhdung\\Desktop\\FU Learning\\Ki7\\PRN221\\PRN221_Project\\PRN221_Project\\PRN221_Project\\PRN221_Project.csproj": {}
+    "C:\\Users\\banhdung\\Desktop\\PRN221_Project\\PRN221_Project\\PRN221_Project\\PRN221_Project.csproj": {}
   },
   "projects": {
-    "C:\\Users\\banhdung\\Desktop\\FU Learning\\Ki7\\PRN221\\PRN221_Project\\PRN221_Project\\PRN221_Project\\PRN221_Project.csproj": {
+    "C:\\Users\\banhdung\\Desktop\\PRN221_Project\\PRN221_Project\\PRN221_Project\\PRN221_Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\banhdung\\Desktop\\FU Learning\\Ki7\\PRN221\\PRN221_Project\\PRN221_Project\\PRN221_Project\\PRN221_Project.csproj",
+        "projectUniqueName": "C:\\Users\\banhdung\\Desktop\\PRN221_Project\\PRN221_Project\\PRN221_Project\\PRN221_Project.csproj",
         "projectName": "PRN221_Project",
-        "projectPath": "C:\\Users\\banhdung\\Desktop\\FU Learning\\Ki7\\PRN221\\PRN221_Project\\PRN221_Project\\PRN221_Project\\PRN221_Project.csproj",
+        "projectPath": "C:\\Users\\banhdung\\Desktop\\PRN221_Project\\PRN221_Project\\PRN221_Project\\PRN221_Project.csproj",
         "packagesPath": "C:\\Users\\banhdung\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\banhdung\\Desktop\\FU Learning\\Ki7\\PRN221\\PRN221_Project\\PRN221_Project\\PRN221_Project\\obj\\",
+        "outputPath": "C:\\Users\\banhdung\\Desktop\\PRN221_Project\\PRN221_Project\\PRN221_Project\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\banhdung\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -43,10 +43,6 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[12.0.1, )"
-            },
-            "Microsoft.AspNetCore.Authentication.Cookies": {
-              "target": "Package",
-              "version": "[2.2.0, )"
             },
             "Microsoft.AspNetCore.Identity": {
               "target": "Package",

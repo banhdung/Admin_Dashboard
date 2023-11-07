@@ -51,7 +51,8 @@ namespace PRN221_Project.Pages.Admin.Employee
 
                 try
                 {
-                    await _context.SaveChangesAsync();
+                TempData["success"] = "Edit successfully";
+                await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {

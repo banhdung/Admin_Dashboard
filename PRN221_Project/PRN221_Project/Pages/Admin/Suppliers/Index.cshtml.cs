@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using PRN221_Project.Models;
 
-namespace PRN221_Project.Pages.Admin.Products
+namespace PRN221_Project.Pages.Admin.Supplliers
 {
     public class IndexModel : PageModel
     {
@@ -18,17 +18,14 @@ namespace PRN221_Project.Pages.Admin.Products
             _context = context;
         }
 
-        public IList<Product> Product { get;set; } = default!;
+        public IList<Supplier> Supplier { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.Products != null)
+            if (_context.Suppliers != null)
             {
-                Product = await _context.Products
-                .Include(p => p.Category)
-                .Include(p => p.Unit).ToListAsync();
+                Supplier = await _context.Suppliers.ToListAsync();
             }
-
         }
     }
 }

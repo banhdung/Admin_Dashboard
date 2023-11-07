@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PRN221_Project.Models;
 
-namespace PRN221_Project.Pages.Admin.Employee
+namespace PRN221_Project.Pages.Admin.Supplliers
 {
     public class CreateModel : PageModel
     {
@@ -25,20 +24,19 @@ namespace PRN221_Project.Pages.Admin.Employee
         }
 
         [BindProperty]
-        public Account Account { get; set; } = default!;
+        public Supplier Supplier { get; set; } = default!;
         
 
-       
+        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Accounts == null || Account == null)
+          if (!ModelState.IsValid || _context.Suppliers == null || Supplier == null)
             {
                 return Page();
             }
 
-            _context.Accounts.Add(Account);
+            _context.Suppliers.Add(Supplier);
             await _context.SaveChangesAsync();
-            TempData["success"] = "Create successfully";
 
             return RedirectToPage("./Index");
         }

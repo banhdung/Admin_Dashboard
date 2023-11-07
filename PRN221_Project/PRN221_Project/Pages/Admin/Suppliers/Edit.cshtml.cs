@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PRN221_Project.Models;
 
-namespace PRN221_Project.Pages.Admin.Products
+namespace PRN221_Project.Pages.Admin.Supplliers
 {
     public class EditModel : PageModel
     {
@@ -20,34 +20,34 @@ namespace PRN221_Project.Pages.Admin.Products
         }
 
         [BindProperty]
-        public Product Product { get; set; } = default!;
+        public Supplier Supplier { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Products == null)
+            if (id == null || _context.Suppliers == null)
             {
                 return NotFound();
             }
 
-            var product =  await _context.Products.FirstOrDefaultAsync(m => m.ProductId == id);
-            if (product == null)
+            var supplier =  await _context.Suppliers.FirstOrDefaultAsync(m => m.SupplierId == id);
+            if (supplier == null)
             {
                 return NotFound();
             }
-            Product = product;
-           ViewData["CategoryId"] = new SelectList(_context.ProductCategories, "CategoryId", "CategoryName");
-           ViewData["UnitId"] = new SelectList(_context.ProductUnits, "UnitId", "UnitName");
+            Supplier = supplier;
             return Page();
         }
 
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return Page();
-            //}
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
 
-            _context.Attach(Product).State = EntityState.Modified;
+            _context.Attach(Supplier).State = EntityState.Modified;
 
             try
             {
@@ -55,7 +55,7 @@ namespace PRN221_Project.Pages.Admin.Products
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProductExists(Product.ProductId))
+                if (!SupplierExists(Supplier.SupplierId))
                 {
                     return NotFound();
                 }
@@ -68,9 +68,9 @@ namespace PRN221_Project.Pages.Admin.Products
             return RedirectToPage("./Index");
         }
 
-        private bool ProductExists(int id)
+        private bool SupplierExists(int id)
         {
-          return (_context.Products?.Any(e => e.ProductId == id)).GetValueOrDefault();
+          return (_context.Suppliers?.Any(e => e.SupplierId == id)).GetValueOrDefault();
         }
     }
 }

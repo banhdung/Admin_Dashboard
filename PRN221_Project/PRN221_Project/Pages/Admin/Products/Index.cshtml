@@ -13,7 +13,7 @@
     <a class="btn btn-primary" asp-page="Create">Create New</a>
 </p>
 <a href="/admin">Back to overview</a>
-<table class="table" id="dataTable">
+<table class="table" id="data-table">
     <thead>
         <tr>
             <th>
@@ -71,10 +71,10 @@
                 @Html.DisplayFor(modelItem => item.AccountId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Category.CategoryId)
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Unit.UnitId)
+                @Html.DisplayFor(modelItem => item.Unit.UnitName)
             </td>
             <td>
                     <a class="text-decoration-none" asp-page="./Edit" asp-route-id="@item.ProductId"> <i class="bi bi-pencil-fill"></i> Edit</a> |
@@ -90,7 +90,7 @@
     function search() {
         var input = document.getElementById("searchTerm");
         var filter = input.value.toUpperCase();
-        var table = document.getElementById("dataTable");
+        var table = document.getElementById("data-table");
         var rows = table.getElementsByTagName("tr");
         for (var i = 1; i < rows.length; i++) {
             var cells = rows[i].getElementsByTagName("td");
