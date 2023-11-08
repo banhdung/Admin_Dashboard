@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using PRN221_Project.Models;
 using System.Data;
 
@@ -15,12 +16,16 @@ namespace PRN221_Project.Pages.Admin
         {
             _context = context;
         }
-        public double Revenue { get; set; }
+        public double daysRevenue { get; set; }
+        public double monthsRevenue { get; set; }
         public List<Invoice> invoices { get; set; }
+        public List<Invoice> recentInvoices { get; set; }
 
+        public List<Customer> customers {get; set; }
+        public List<Product> hotProduct { get; set; }   
         public double dayRevenue(DateTime day)
         {
-            Revenue = 0;
+            daysRevenue = 0;
             invoices = _context.Invoices.ToList();
 
             foreach (var invoice in invoices)
@@ -28,30 +33,37 @@ namespace PRN221_Project.Pages.Admin
 
                 if (invoice.DateRecorded == day)
                 {
-                    Revenue += invoice.TotalAmount;
+                    daysRevenue += invoice.TotalAmount;
                 }       
             }
-            return Revenue;
+            return daysRevenue;
         }
 
-        //public double mothRevenue(DateTime month)
-        //{
-        //    Revenue = 0;
-        //    invoices = _context.Invoices.ToList();
+        public double monthRevenue(DateTime month)
+        {
+            monthsRevenue = 0;
+            invoices = _context.Invoices.ToList();
 
-        //    foreach (var invoice in invoices)
-        //    {
+            foreach (var invoice in invoices)
+            {
 
-        //        if (invoice.DateRecorded == month)
-        //        {
-        //            Revenue += invoice.TotalAmount;
-        //        }
-        //    }
-        //    return Revenue;
-        //}
+                if (invoice.DateRecorded.Date.Month == month.Month)
+                {
+                    monthsRevenue += invoice.TotalAmount;
+                }
+            }
+            return monthsRevenue;
+        }
+
+
+
         public IActionResult OnGet()
         {
-           
+            customers = _context.Customers.ToList();
+            recentInvoices = _context.Invoices.Include(x =>x.Customer).OrderByDescending(x => x.DateRecorded).Take(5).ToList(); 
+          
+
+
             string ?userCookie = Request.Cookies["Role"];
             if (userCookie.Equals("1"))
             {

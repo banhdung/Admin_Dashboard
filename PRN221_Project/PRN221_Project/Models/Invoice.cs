@@ -17,7 +17,7 @@ namespace PRN221_Project.Models
         public double? AmountTendered { get; set; }
         public string ?BankAccountName { get; set; }
         public string ?BankAccountNumber { get; set; }
-        public DateTime? DateRecorded { get; set; }
+        public DateTime DateRecorded { get; set; }
         public int? AccountId { get; set; }
 
         public virtual Account ?Account { get; set; }

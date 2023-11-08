@@ -1,0 +1,78 @@
+﻿@page
+@model PRN221_Project.Pages.Admin.Invoices.IndexModel
+
+@{
+    ViewData["Title"] = "Invoices";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice[0].PaymentType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice[0].TotalAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice[0].AmountTendered)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice[0].BankAccountName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice[0].BankAccountNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice[0].DateRecorded)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice[0].Account)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice[0].Customer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Invoice) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmountTendered)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BankAccountName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BankAccountNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateRecorded)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Account.AccountId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.CustomerId)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.InvoiceId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.InvoiceId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.InvoiceId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

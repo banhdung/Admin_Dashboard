@@ -1,0 +1,67 @@
+﻿@page
+@model PRN221_Project.Pages.Admin.Invoices.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Invoice</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Invoice.CustomerId" class="control-label"></label>
+                <select asp-for="Invoice.CustomerId" class ="form-control" asp-items="ViewBag.CustomerId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invoice.PaymentType" class="control-label"></label>
+                <input asp-for="Invoice.PaymentType" class="form-control" />
+                <span asp-validation-for="Invoice.PaymentType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invoice.TotalAmount" class="control-label"></label>
+                <input asp-for="Invoice.TotalAmount" class="form-control" />
+                <span asp-validation-for="Invoice.TotalAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invoice.AmountTendered" class="control-label"></label>
+                <input asp-for="Invoice.AmountTendered" class="form-control" />
+                <span asp-validation-for="Invoice.AmountTendered" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invoice.BankAccountName" class="control-label"></label>
+                <input asp-for="Invoice.BankAccountName" class="form-control" />
+                <span asp-validation-for="Invoice.BankAccountName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invoice.BankAccountNumber" class="control-label"></label>
+                <input asp-for="Invoice.BankAccountNumber" class="form-control" />
+                <span asp-validation-for="Invoice.BankAccountNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invoice.DateRecorded" class="control-label"></label>
+                <input asp-for="Invoice.DateRecorded" class="form-control" />
+                <span asp-validation-for="Invoice.DateRecorded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invoice.AccountId" class="control-label"></label>
+                <select asp-for="Invoice.AccountId" class ="form-control" asp-items="ViewBag.AccountId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

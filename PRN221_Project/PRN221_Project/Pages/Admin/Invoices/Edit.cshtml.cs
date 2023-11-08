@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PRN221_Project.Models;
 
-namespace PRN221_Project.Pages.Admin.Employee
+namespace PRN221_Project.Pages.Admin.Invoices
 {
     public class EditModel : PageModel
     {
@@ -20,21 +20,23 @@ namespace PRN221_Project.Pages.Admin.Employee
         }
 
         [BindProperty]
-        public Account Account { get; set; } = default!;
+        public Invoice Invoice { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Accounts == null)
+            if (id == null || _context.Invoices == null)
             {
                 return NotFound();
             }
 
-            var account = await _context.Accounts.FirstOrDefaultAsync(m => m.AccountId == id);
-            if (account == null)
+            var invoice =  await _context.Invoices.FirstOrDefaultAsync(m => m.InvoiceId == id);
+            if (invoice == null)
             {
                 return NotFound();
             }
-            Account = account;
+            Invoice = invoice;
+           ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "AccountId");
+           ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId");
             return Page();
         }
 
@@ -44,38 +46,33 @@ namespace PRN221_Project.Pages.Admin.Employee
         {
             if (!ModelState.IsValid)
             {
+                return Page();
+            }
 
-                return Page();
-            }
-            if(Account.Username.Length > 30)
-            {
-                return Page();
-            }
-            _context.Attach(Account).State = EntityState.Modified;
+            _context.Attach(Invoice).State = EntityState.Modified;
 
             try
             {
-                TempData["success"] = "Edit successfully";
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AccountExists(Account.AccountId))
+                if (!InvoiceExists(Invoice.InvoiceId))
                 {
                     return NotFound();
                 }
                 else
                 {
-                    throw ;
+                    throw;
                 }
             }
 
             return RedirectToPage("./Index");
         }
 
-        private bool AccountExists(int id)
+        private bool InvoiceExists(int id)
         {
-            return (_context.Accounts?.Any(e => e.AccountId == id)).GetValueOrDefault();
+          return (_context.Invoices?.Any(e => e.InvoiceId == id)).GetValueOrDefault();
         }
     }
 }

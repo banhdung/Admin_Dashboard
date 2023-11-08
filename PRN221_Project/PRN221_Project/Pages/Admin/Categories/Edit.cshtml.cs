@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PRN221_Project.Models;
 
-namespace PRN221_Project.Pages.Admin.Employee
+namespace PRN221_Project.Pages.Admin.Categories
 {
     public class EditModel : PageModel
     {
@@ -20,21 +20,21 @@ namespace PRN221_Project.Pages.Admin.Employee
         }
 
         [BindProperty]
-        public Account Account { get; set; } = default!;
+        public ProductCategory ProductCategory { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Accounts == null)
+            if (id == null || _context.ProductCategories == null)
             {
                 return NotFound();
             }
 
-            var account = await _context.Accounts.FirstOrDefaultAsync(m => m.AccountId == id);
-            if (account == null)
+            var productcategory =  await _context.ProductCategories.FirstOrDefaultAsync(m => m.CategoryId == id);
+            if (productcategory == null)
             {
                 return NotFound();
             }
-            Account = account;
+            ProductCategory = productcategory;
             return Page();
         }
 
@@ -44,38 +44,33 @@ namespace PRN221_Project.Pages.Admin.Employee
         {
             if (!ModelState.IsValid)
             {
+                return Page();
+            }
 
-                return Page();
-            }
-            if(Account.Username.Length > 30)
-            {
-                return Page();
-            }
-            _context.Attach(Account).State = EntityState.Modified;
+            _context.Attach(ProductCategory).State = EntityState.Modified;
 
             try
             {
-                TempData["success"] = "Edit successfully";
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AccountExists(Account.AccountId))
+                if (!ProductCategoryExists(ProductCategory.CategoryId))
                 {
                     return NotFound();
                 }
                 else
                 {
-                    throw ;
+                    throw;
                 }
             }
 
             return RedirectToPage("./Index");
         }
 
-        private bool AccountExists(int id)
+        private bool ProductCategoryExists(int id)
         {
-            return (_context.Accounts?.Any(e => e.AccountId == id)).GetValueOrDefault();
+          return (_context.ProductCategories?.Any(e => e.CategoryId == id)).GetValueOrDefault();
         }
     }
 }
