@@ -43,6 +43,7 @@ namespace PRN221_Project.Pages.Admin.ReceivieProducts
             product.UnitInStock += ReceiveProduct.Quantity;
             _context.ReceiveProducts.Add(ReceiveProduct);
             await _context.SaveChangesAsync();
+            TempData["success"] = "Create successfully";
 
             return RedirectToPage("./Index");
         }

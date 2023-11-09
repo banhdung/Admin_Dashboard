@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PRN221_Project.Models;
+using PRN221_Project.Services;
 
 namespace PRN221_Project.Pages.Admin.Categories
 {
@@ -38,8 +39,7 @@ namespace PRN221_Project.Pages.Admin.Categories
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
+        
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -47,11 +47,17 @@ namespace PRN221_Project.Pages.Admin.Categories
                 return Page();
             }
 
+            
             _context.Attach(ProductCategory).State = EntityState.Modified;
-
+            if (_context.ProductCategories.FirstOrDefault(x => x.CategoryName == ProductCategory.CategoryName)!=null)
+            {
+                TempData["error"] = "Category Name existed";
+                return Redirect("/admin/categories/edit?id="+ProductCategory.CategoryId);
+            }
             try
             {
                 await _context.SaveChangesAsync();
+                TempData["success"] = "Edit successfully";
             }
             catch (DbUpdateConcurrencyException)
             {

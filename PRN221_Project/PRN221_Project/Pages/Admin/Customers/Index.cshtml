@@ -21,6 +21,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Customer[0].CustomerName)
+                <a id="sortButton1"><i class="bi bi-arrow-down-up"></i></a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Customer[0].Contact)
@@ -42,6 +43,7 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CustomerName)
+                  
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Contact)
@@ -61,5 +63,44 @@
 }
     </tbody>
 </table>
+
+<script>
+    function sortTable(tableId, columnIndex, sortId) {
+        const sortButton = document.getElementById(sortId);
+        let ascending = true;
+        sortButton.addEventListener("click", () => {
+            const icon = sortButton.querySelector("i");
+            const table = document.getElementById(tableId);
+            const tbody = table.querySelector("tbody");
+            const rows = Array.from(tbody.querySelectorAll("tr"));
+            if (ascending) {
+                icon.classList.remove("bi-arrow-down-up");
+                icon.classList.add("bi-arrow-up");
+                rows.sort((a, b) => {
+                    const nameA = a.cells[columnIndex].textContent;
+                    const nameB = b.cells[columnIndex].textContent;
+                    return nameA.localeCompare(nameB);
+                });
+            } else {
+                icon.classList.remove("bi-arrow-up");
+                icon.classList.add("bi-arrow-down");
+                rows.sort((a, b) => {
+                    const nameA = a.cells[columnIndex].textContent;
+                    const nameB = b.cells[columnIndex].textContent;
+                    return nameB.localeCompare(nameA);
+                });
+            }
+            while (tbody.firstChild) {
+                tbody.removeChild(tbody.firstChild);
+            }
+            rows.forEach((row) => {
+                tbody.appendChild(row);
+            });
+            ascending = !ascending;
+        });
+    }
+    sortTable("data-table", 0, "sortButton1");
+
+</script>
 
 

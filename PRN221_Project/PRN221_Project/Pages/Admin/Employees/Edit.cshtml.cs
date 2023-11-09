@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PRN221_Project.Models;
+using PRN221_Project.Services;
 
 namespace PRN221_Project.Pages.Admin.Employee
 {
@@ -47,33 +48,33 @@ namespace PRN221_Project.Pages.Admin.Employee
 
                 return Page();
             }
-           if(Account.Username.Length > 30 )
+          
+            else
             {
-                TempData["error"] = "Validation fail";
-                return Page();
-            }
-            
-            Account.Role = 2;
-            _context.Attach(Account).State = EntityState.Modified;
+                Account.Role = 2;
+                _context.Attach(Account).State = EntityState.Modified;
 
-            try
-            {
-                TempData["success"] = "Edit successfully";
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AccountExists(Account.AccountId))
+                try
                 {
-                    return NotFound();
+                    TempData["success"] = "Edit successfully";
+                    await _context.SaveChangesAsync();
                 }
-                else
+                catch (DbUpdateConcurrencyException)
                 {
-                    throw ;
+                    if (!AccountExists(Account.AccountId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
+
+                return RedirectToPage("./Index");
             }
 
-            return RedirectToPage("./Index");
+          
         }
 
         private bool AccountExists(int id)

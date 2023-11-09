@@ -6,36 +6,31 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using PRN221_Project.Models;
+using PRN221_Project.Services.IService;
 
 namespace PRN221_Project.Pages.Admin.Categories
 {
     public class DetailsModel : PageModel
     {
-        private readonly PRN221_Project.Models.POSTContext _context;
 
-        public DetailsModel(PRN221_Project.Models.POSTContext context)
+        private IProductCategoryService productCategoryService;
+
+        public DetailsModel(IProductCategoryService productCategoryService)
         {
-            _context = context;
+            this.productCategoryService = productCategoryService;
         }
 
-      public ProductCategory ProductCategory { get; set; } = default!; 
+        public ProductCategory ProductCategory { get; set; } 
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.ProductCategories == null)
+            if (id == null  )
             {
                 return NotFound();
             }
 
-            var productcategory = await _context.ProductCategories.FirstOrDefaultAsync(m => m.CategoryId == id);
-            if (productcategory == null)
-            {
-                return NotFound();
-            }
-            else 
-            {
-                ProductCategory = productcategory;
-            }
+            ProductCategory = productCategoryService.GetCategoryById(id);
+            
             return Page();
         }
     }

@@ -5,17 +5,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using PRN221_Project.Models;
+using PRN221_Project.Services.IService;
 
 namespace PRN221_Project.Pages.Admin.Categories
 {
     public class CreateModel : PageModel
     {
-        private readonly PRN221_Project.Models.POSTContext _context;
 
-        public CreateModel(PRN221_Project.Models.POSTContext context)
+        private IProductCategoryService productCategoryService;
+        public CreateModel(IProductCategoryService productCategoryService)
         {
-            _context = context;
+            this.productCategoryService = productCategoryService;
         }
 
         public IActionResult OnGet()
@@ -24,19 +26,21 @@ namespace PRN221_Project.Pages.Admin.Categories
         }
 
         [BindProperty]
-        public ProductCategory ProductCategory { get; set; } = default!;
-        
-
+        public ProductCategory ProductCategory { get; set; } = default!;  
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.ProductCategories == null || ProductCategory == null)
+          if (!ModelState.IsValid  || ProductCategory == null)
             {
                 return Page();
             }
-
-            _context.ProductCategories.Add(ProductCategory);
-            await _context.SaveChangesAsync();
+           if(productCategoryService.GetCategoryByName(ProductCategory.CategoryName)!= null)
+            {
+                TempData["error"] = "Category Name existed";
+                return Redirect("/admin/categories/create");
+            }
+            productCategoryService.AddCategory(ProductCategory);
+            TempData["success"] = "Create successfully";
 
             return RedirectToPage("./Index");
         }

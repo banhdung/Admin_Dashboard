@@ -6,25 +6,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using PRN221_Project.Models;
+using PRN221_Project.Services.IService;
 
 namespace PRN221_Project.Pages.Customers
 {
     public class IndexModel : PageModel
     {
-        private readonly PRN221_Project.Models.POSTContext _context;
+        private ICustomerService customerService;
 
-        public IndexModel(PRN221_Project.Models.POSTContext context)
+        public IndexModel(ICustomerService customerService)
         {
-            _context = context;
+            this.customerService = customerService;
         }
 
         public IList<Customer> Customer { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.Customers != null)
+            if (customerService.GetAllCustomer != null)
             {
-                Customer = await _context.Customers.ToListAsync();
+               Customer = customerService.GetAllCustomer(); 
             }
         }
     }

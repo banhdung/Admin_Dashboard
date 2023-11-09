@@ -3,18 +3,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using PRN221_Project.Models;
 using PRN221_Project.Services;
+using PRN221_Project.Services.IService;
 
 namespace PRN221_Project.Pages.Admin
 {
     public class LoginModel : PageModel
     {
 
-        private readonly POSTContext _context;
 
-        public LoginModel(POSTContext context)
+        private IAccountService accountService; 
+        public LoginModel(IAccountService accountService)
         {
-            _context = context;
-
+          this.accountService = accountService;
         }
         [BindProperty]
         public string? Username { get; set; }
@@ -45,7 +45,6 @@ namespace PRN221_Project.Pages.Admin
 
         public IActionResult OnPost()
         {
-            AccountService accountService = new AccountService(_context);
             Account account = accountService.getAccountByUserNameAndPassword(Username, Password);
             if (account != null)
             {
@@ -53,19 +52,13 @@ namespace PRN221_Project.Pages.Admin
                 var userRole = account.Role;
                 Response.Cookies.Append("Role", userRole.ToString());
                 Response.Cookies.Append("Username", account.Fullname);
-                DateTime expirationDate = DateTime.Now.AddSeconds(30);
-
-                CookieOptions options = new CookieOptions
-                {
-                    Expires = expirationDate
-                };
+               
                 if (userRole == 1)
                 {
                     return Redirect("/admin");
                 }
                 else
                 {
-
                     return Redirect("/staff");
                 }
             }

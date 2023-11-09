@@ -46,7 +46,8 @@ namespace PRN221_Project.Pages.Customers
             {
                 return Page();
             }
-
+            
+            
             _context.Attach(Customer).State = EntityState.Modified;
 
             try

@@ -11,17 +11,21 @@
             {
                 currentpage = Model.currentPage,
                 countpages = Model.countPages,
-                generateUrl = (int? page) => "/Admin/ReceiveProducts?p=" + page
+                generateUrl = (int? page) => "/Admin/ReceiveProducts?SearchKeyWord=" + Model.SearchKeyword + "&daySearch=" + Model.daySearch + "&p=" + page
             };
 }
 <p>
     <form method="get">
         <div class="form-group">
-            <input type="text" class="form-control w-25 h-25  border border-primary rounded-pil" asp-for="SearchKeyword" placeholder="Search supplier name ...">
+            <input type="text" class="form-control w-25  border border-primary rounded-pill" asp-for="SearchKeyword" placeholder="Search customer...">
+            <input type="date" class=" m-2 border border-primary rounded-pil" asp-for="daySearch">
         </div>
         <button type="submit" class="btn btn-primary mt-2">Search</button>
     </form>
-    <a asp-page="Create" >Create New</a>
+<p>
+    <a asp-page="Create" class="btn btn-primary mt-2">Create New</a>
+</p>
+    <a href="/admin">Back to overview</a>
 </p>
 <table class="table">
     <thead>

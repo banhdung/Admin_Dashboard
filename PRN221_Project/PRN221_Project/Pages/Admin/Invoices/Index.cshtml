@@ -9,7 +9,7 @@
             {
                 currentpage = Model.currentPage,
                 countpages = Model.countPages,
-                generateUrl = (int? page) => "/Admin/Invoices?p=" + page
+                generateUrl = (int? page) => "/Admin/Invoices?SearchKeyWord="+Model.SearchKeyword+"&daySearch="+Model.daySearch+"&p=" + page
             };
 }
 
@@ -17,7 +17,7 @@
 <form method="get">
     <div class="form-group">
         <input type="text" class="form-control w-25  border border-primary rounded-pill" asp-for="SearchKeyword" placeholder="Search customer...">
-        <input type="date"   class=" m-2 border border-primary rounded-pil" asp-for="daySearch"/>
+        <input type="date" class=" m-2 border border-primary rounded-pil" asp-for="daySearch">
     </div>
     <button type="submit" class="btn btn-primary mt-2">Search</button>
 </form>

@@ -15,9 +15,13 @@ namespace PRN221_Project.Pages.Admin.ReceivieProducts
 
         [BindProperty(SupportsGet = true)]
         public string SearchKeyword { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public DateTime? daySearch { get; set; }
+
 
         public const int ITEMS_PER_PAGE = 10;
         [BindProperty(SupportsGet = true, Name = "p")]
+
         public int currentPage { get; set; }
         public int countPages { get; set; }
         public IndexModel(PRN221_Project.Models.POSTContext context)
@@ -34,9 +38,23 @@ namespace PRN221_Project.Pages.Admin.ReceivieProducts
                 ReceiveProduct = await _context.ReceiveProducts
                 .Include(i => i.Account)
                 .Include(i => i.Supplier).Include(i => i.Product).ToListAsync();
-                if (!String.IsNullOrEmpty(SearchKeyword))
+                if (!String.IsNullOrEmpty(SearchKeyword) && daySearch.HasValue)
+                {
+                    ReceiveProduct = _context.ReceiveProducts.Where(x => x.Supplier.SupplierName.Contains(SearchKeyword)).Where(x => x.ReceivedDate == daySearch).ToList();
+                }
+                else if (String.IsNullOrEmpty(SearchKeyword) && daySearch.HasValue)
+                {
+                    ReceiveProduct = _context.ReceiveProducts.Where(x => x.ReceivedDate == daySearch).ToList();
+                }
+                else if (!String.IsNullOrEmpty(SearchKeyword) && !daySearch.HasValue)
                 {
                     ReceiveProduct = _context.ReceiveProducts.Where(x => x.Supplier.SupplierName.Contains(SearchKeyword)).ToList();
+                }
+                else
+                {
+                    ReceiveProduct = await _context.ReceiveProducts
+                .Include(i => i.Account)
+                .Include(i => i.Supplier).Include(i => i.Product).ToListAsync();
                 }
                 int total = ReceiveProduct.Count();
                 countPages = (int)Math.Ceiling((double)total / ITEMS_PER_PAGE);

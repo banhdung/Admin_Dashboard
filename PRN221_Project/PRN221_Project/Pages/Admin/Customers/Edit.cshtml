@@ -14,7 +14,11 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Customer.CustomerId" />
-            
+            <div class="form-group">
+               
+                <input type="hidden" asp-for="Customer.CustomerCode" class="form-control" />
+              
+            </div>
             <div class="form-group">
                 <label asp-for="Customer.CustomerName" class="control-label"></label>
                 <input asp-for="Customer.CustomerName" class="form-control" />
@@ -31,9 +35,9 @@
                 <span asp-validation-for="Customer.Address" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Customer.Point" class="control-label"></label>
-                <input asp-for="Customer.Point" class="form-control" disabled />
-                <span asp-validation-for="Customer.Point" class="text-danger"></span>
+                
+                <input type="hidden" asp-for="Customer.Point" class="form-control" />
+               
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

@@ -46,12 +46,13 @@ namespace PRN221_Project.Pages.Admin.Products
             //{
             //    return Page();
             //}
-
+            Product.AccountId = 1;
             _context.Attach(Product).State = EntityState.Modified;
 
             try
             {
                 await _context.SaveChangesAsync();
+                TempData["success"] = "Edit successfully";
             }
             catch (DbUpdateConcurrencyException)
             {

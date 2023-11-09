@@ -7,16 +7,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PRN221_Project.Models;
+using PRN221_Project.Services;
+using PRN221_Project.Services.IService;
 
 namespace PRN221_Project.Pages.Admin.Employee
 {
     public class CreateModel : PageModel
     {
-        private readonly PRN221_Project.Models.POSTContext _context;
 
-        public CreateModel(PRN221_Project.Models.POSTContext context)
+
+        private IAccountService accountService;
+
+        public CreateModel(IAccountService accountService)
         {
-            _context = context;
+            this.accountService = accountService;
         }
 
         public IActionResult OnGet()
@@ -31,16 +35,26 @@ namespace PRN221_Project.Pages.Admin.Employee
        
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Accounts == null || Account == null)
+          if (!ModelState.IsValid )
             {
                 return Page();
             }
-            Account.Role = 2; 
-            _context.Accounts.Add(Account);
-            await _context.SaveChangesAsync();
-            TempData["success"] = "Create successfully";
+            if (accountService.getAccountByUserName(Account.Username) != null)
+            {
+                TempData["error"] = "Username existed";
+                return Page();
 
-            return RedirectToPage("./Index");
+            }
+            else
+            {
+                Account.Role = 2;
+                accountService.AddAccount(Account);
+                TempData["success"] = "Create successfully";
+                return RedirectToPage("./Index");
+            }
+          
+
+          
         }
     }
 }

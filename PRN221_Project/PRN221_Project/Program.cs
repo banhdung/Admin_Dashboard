@@ -2,7 +2,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PRN221_Project.Models;
+
 using PRN221_Project.Services;
+using PRN221_Project.Services.IService;
+
 
 namespace PRN221_Project
 {
@@ -12,17 +15,16 @@ namespace PRN221_Project
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            var serviceColection = new ServiceCollection();
 
-           
-
+            builder.Services.AddScoped<IProductCategoryService,ProductCategoryService>();
+            builder.Services.AddScoped<IAccountService, AccountService>();
+            builder.Services.AddScoped<ICustomerService, CustomerService>();
             builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
             builder.Services.AddDbContext<POSTContext>(opt =>
             {
                 opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
-
-           
-
 
             var app = builder.Build();
 
