@@ -5,7 +5,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Receive Products</h1>
+<div class="d-flex">
+    <h1 >Receive Products</h1>
+    <p>
+        <a asp-page="Create" class="btn btn-primary  mt-2 ms-lg-5">Create New</a>
+    </p>
+</div>
 @{
     var pagingmodel = new PRN221_Project.Helpers.PagingModel()
             {
@@ -17,14 +22,12 @@
 <p>
     <form method="get">
         <div class="form-group">
-            <input type="text" class="form-control w-25  border border-primary rounded-pill" asp-for="SearchKeyword" placeholder="Search customer...">
+            <input type="text" class="form-control w-25  border border-primary rounded-pill" asp-for="SearchKeyword" placeholder="Search supplier..">
             <input type="date" class=" m-2 border border-primary rounded-pil" asp-for="daySearch">
         </div>
-        <button type="submit" class="btn btn-primary mt-2">Search</button>
+        <button type="submit" class="btn btn-secondary mt-2">Search</button>
     </form>
-<p>
-    <a asp-page="Create" class="btn btn-primary mt-2">Create New</a>
-</p>
+
     <a href="/admin">Back to overview</a>
 </p>
 <table class="table">
