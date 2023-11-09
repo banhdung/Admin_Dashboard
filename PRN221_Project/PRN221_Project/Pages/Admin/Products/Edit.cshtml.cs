@@ -48,7 +48,11 @@ namespace PRN221_Project.Pages.Admin.Products
             //}
             Product.AccountId = 1;
             _context.Attach(Product).State = EntityState.Modified;
-
+            if (_context.Products.FirstOrDefault(x => x.ProductName == Product.ProductName) != null)
+            {
+                TempData["error"] = "Product Name existed";
+                return Redirect("/admin/products/edit?id="+Product.ProductId);
+            }
             try
             {
                 await _context.SaveChangesAsync();

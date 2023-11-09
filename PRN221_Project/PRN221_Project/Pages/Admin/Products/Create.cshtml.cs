@@ -36,6 +36,11 @@ namespace PRN221_Project.Pages.Admin.Products
             {
                 return Page();
             }
+          if(_context.Products.FirstOrDefault(x => x.ProductName == Product.ProductName)!= null)
+            {
+                TempData["error"] = "Product Name existed";
+                return Redirect("/admin/products/create");
+            }
          
             else
             {
