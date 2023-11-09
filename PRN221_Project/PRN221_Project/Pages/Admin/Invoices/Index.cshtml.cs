@@ -14,7 +14,10 @@ namespace PRN221_Project.Pages.Admin.Invoices
         private readonly PRN221_Project.Models.POSTContext _context;
 
         [BindProperty(SupportsGet = true)]
-        public string SearchKeyword { get; set; }
+        public string ?SearchKeyword { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public DateTime ?daySearch {  get; set; }
 
         public const int ITEMS_PER_PAGE = 10;
         [BindProperty(SupportsGet = true, Name = "p")]
@@ -35,10 +38,13 @@ namespace PRN221_Project.Pages.Admin.Invoices
                 Invoice = await _context.Invoices
                 .Include(i => i.Account)
                 .Include(i => i.Customer).ToListAsync();
-                if (!String.IsNullOrEmpty(SearchKeyword))
+                if (!String.IsNullOrEmpty(SearchKeyword) && daySearch.HasValue)
+                {
+                    Invoice = _context.Invoices.Where(x => x.Customer.CustomerName.Contains(SearchKeyword)).Where(x => x.DateRecorded == daySearch).ToList();
+                }else if(!String.IsNullOrEmpty(SearchKeyword) && !daySearch.HasValue)
                 {
                     Invoice = _context.Invoices.Where(x => x.Customer.CustomerName.Contains(SearchKeyword)).ToList();
-                }      
+                }   
                 int total = Invoice.Count();
                 countPages = (int)Math.Ceiling((double)total / ITEMS_PER_PAGE);
                 if (currentPage < 1) currentPage = 1;
