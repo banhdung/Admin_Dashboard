@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using PRN221_Project.Models;
 
-namespace PRN221_Project.Pages.Admin.Invoices
+namespace PRN221_Project.Pages.Admin.ReceivieProducts
 {
     public class DetailsModel : PageModel
     {
@@ -18,23 +18,23 @@ namespace PRN221_Project.Pages.Admin.Invoices
             _context = context;
         }
 
-      public Invoice Invoice { get; set; } = default!; 
+      public ReceiveProduct ReceiveProduct { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Invoices == null)
+            if (id == null || _context.ReceiveProducts == null)
             {
                 return NotFound();
             }
 
-            var invoice = await _context.Invoices.Include(x => x.Customer).Include(x => x.Account).FirstOrDefaultAsync(m => m.InvoiceId == id);
-            if (invoice == null)
+            var receiveproduct = await _context.ReceiveProducts.Include(x=>x.Product).Include(x => x.Supplier).Include(x =>x.Account).FirstOrDefaultAsync(m => m.ReceiveProductId == id);
+            if (receiveproduct == null)
             {
                 return NotFound();
             }
             else 
             {
-                Invoice = invoice;
+                ReceiveProduct = receiveproduct;
             }
             return Page();
         }

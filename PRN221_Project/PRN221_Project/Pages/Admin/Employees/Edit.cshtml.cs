@@ -47,10 +47,13 @@ namespace PRN221_Project.Pages.Admin.Employee
 
                 return Page();
             }
-            if(Account.Username.Length > 30)
+           if(Account.Username.Length > 30 )
             {
+                TempData["error"] = "Validation fail";
                 return Page();
             }
+            
+            Account.Role = 2;
             _context.Attach(Account).State = EntityState.Modified;
 
             try

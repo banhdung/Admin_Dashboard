@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using PRN221_Project.Models;
 
-namespace PRN221_Project.Pages.Admin.Invoices
+namespace PRN221_Project.Pages.Admin.ReceivieProducts
 {
     public class IndexModel : PageModel
     {
@@ -20,26 +20,25 @@ namespace PRN221_Project.Pages.Admin.Invoices
         [BindProperty(SupportsGet = true, Name = "p")]
         public int currentPage { get; set; }
         public int countPages { get; set; }
-
         public IndexModel(PRN221_Project.Models.POSTContext context)
         {
             _context = context;
         }
 
-        public IList<Invoice> Invoice { get;set; } = default!;
+        public IList<ReceiveProduct> ReceiveProduct { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.Invoices != null)
+            if (_context.ReceiveProducts != null)
             {
-                Invoice = await _context.Invoices
+                ReceiveProduct = await _context.ReceiveProducts
                 .Include(i => i.Account)
-                .Include(i => i.Customer).ToListAsync();
+                .Include(i => i.Supplier).Include(i => i.Product).ToListAsync();
                 if (!String.IsNullOrEmpty(SearchKeyword))
                 {
-                    Invoice = _context.Invoices.Where(x => x.Customer.CustomerName.Contains(SearchKeyword)).ToList();
-                }      
-                int total = Invoice.Count();
+                    ReceiveProduct = _context.ReceiveProducts.Where(x => x.Supplier.SupplierName.Contains(SearchKeyword)).ToList();
+                }
+                int total = ReceiveProduct.Count();
                 countPages = (int)Math.Ceiling((double)total / ITEMS_PER_PAGE);
                 if (currentPage < 1) currentPage = 1;
                 if (currentPage > countPages) currentPage = countPages;

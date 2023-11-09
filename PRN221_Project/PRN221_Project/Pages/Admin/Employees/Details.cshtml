@@ -29,12 +29,7 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Account.Fullname)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Account.Designation)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Account.Designation)
-        </dd>
+        
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Account.Contact)
         </dt>
@@ -45,7 +40,14 @@
             @Html.DisplayNameFor(model => model.Account.Role)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Account.Role)
+            @if (Model.Account.Role == 1)
+            {
+                <div>Admin</div>
+            }
+            else
+            {
+                <div>Employee</div>
+            }
         </dd>
     </dl>
 </div>

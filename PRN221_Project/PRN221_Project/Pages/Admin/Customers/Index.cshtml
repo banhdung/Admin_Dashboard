@@ -6,16 +6,14 @@
 }
 <link rel="stylesheet" href="~/css/rootcss.css" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
-<h1>Index</h1>
+<h1>Customers</h1>
 
 
-<input class=" form-control-sm border border-primary rounded-pill" type="text" id="searchTerm" placeholder="Enter employees name ..." />
-<button class="btn btn-secondary text-decoration-none" type="button" onclick="search()">Search</button>
-<p>
-    <a class="btn btn-primary" asp-page="Create">Create New</a>
+<input class=" form-control-sm border border-primary rounded-pill" type="text" id="searchTerm" placeholder="Search..." /><p>
+  
 </p>
 <a href="/admin">Back to overview</a>
-<table class="table" id="dataTable">
+<table class="table" id="data-table">
     <thead>
         <tr>
             <th>
@@ -64,25 +62,4 @@
     </tbody>
 </table>
 
-<script>
-    function search() {
-        var input = document.getElementById("searchTerm");
-        var filter = input.value.toUpperCase();
-        var table = document.getElementById("dataTable");
-        var rows = table.getElementsByTagName("tr");
-        for (var i = 1; i < rows.length; i++) {
-            var cells = rows[i].getElementsByTagName("td");
-            var found = false;
-            for (var j = 0; j < cells.length; j++) {
-                var cellText = cells[j].textContent || cells[j].innerText;
-                if (cellText.toUpperCase().indexOf(filter) > -1) {
-                    found = true;
-                    break;
-                }
-            }
-            rows[i].style.display = found ? "" : "none";
-        }
-    }
-    var searchInput = document.getElementById("searchTerm");
-    searchInput.addEventListener("keyup", search);
-</script>
+

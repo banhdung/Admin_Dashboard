@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "mx2xzx/TsZlhRZsGJ07iSh1appbK0b5Qeom1vrgrFdQ=",
+  "Hash": "kRNfe45Uv6HJILnBrepXRCal/ILXmkW8pkrJgg7ZQqs=",
   "Source": "PRN221_Project",
   "BasePath": "_content/PRN221_Project",
   "Mode": "Default",
@@ -1137,6 +1137,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\banhdung\\Desktop\\PRN221_Project\\PRN221_Project\\PRN221_Project\\wwwroot\\js\\common.js",
+      "SourceId": "PRN221_Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\banhdung\\Desktop\\PRN221_Project\\PRN221_Project\\PRN221_Project\\wwwroot\\",
+      "BasePath": "_content/PRN221_Project",
+      "RelativePath": "js/common.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\common.js"
     },
     {
       "Identity": "C:\\Users\\banhdung\\Desktop\\PRN221_Project\\PRN221_Project\\PRN221_Project\\wwwroot\\js\\site.js",

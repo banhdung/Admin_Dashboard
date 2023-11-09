@@ -36,7 +36,12 @@ namespace PRN221_Project.Pages.Admin.Products
             {
                 return Page();
             }
-
+         if(_context.Products.Where( x => x.ProductCode == Product.ProductCode)!= null)
+            {
+                TempData["error"] = "Product Code existed";
+                return Redirect("/admin/products/create");
+            }
+            Product.AccountId = 1;
             _context.Products.Add(Product);
             await _context.SaveChangesAsync();
 

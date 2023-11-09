@@ -4,13 +4,18 @@
 @{
     ViewData["Title"] = "Index";
 }
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
-<link rel="stylesheet" href="~/css/rootcss.css" />
+
+
+
+
+    
+
+
 <h1>Products</h1>
-<input class=" form-control-sm border border-primary rounded-pill" type="text" id="searchTerm" placeholder="Enter product name ..." />
-<button class="btn btn-secondary text-decoration-none" type="button" onclick="search()">Search</button>
+<input class=" form-control-sm border border-primary rounded-pill" type="text" id="searchTerm" placeholder="Search..." />
+
 <p>
-    <a class="btn btn-primary" asp-page="Create">Create New</a>
+    <a class="btn btn-primary mt-3" asp-page="Create">Create New</a>
 </p>
 <a href="/admin">Back to overview</a>
 <table class="table" id="data-table">
@@ -21,93 +26,111 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Product[0].ProductName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Product[0].UnitInStock)
+                <a id="sortButton1"><i class="bi bi-arrow-down-up"></i></a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Product[0].UnitPrice)
+              
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].Unit)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Product[0].DiscountPercentage)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Product[0].ReorderLevel)
+                @Html.DisplayNameFor(model => model.Product[0].UnitInStock)
+              
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Product[0].AccountId)
-            </th>
+            
+          
             <th>
                 @Html.DisplayNameFor(model => model.Product[0].Category)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Product[0].Unit)
-            </th>
+
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Product) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UnitInStock)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UnitPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiscountPercentage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReorderLevel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AccountId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.CategoryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Unit.UnitName)
-            </td>
-            <td>
+        @foreach (var item in Model.Product)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Unit.UnitName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiscountPercentage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitInStock)
+                </td>
+                
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                </td>
+
+                <td>
                     <a class="text-decoration-none" asp-page="./Edit" asp-route-id="@item.ProductId"> <i class="bi bi-pencil-fill"></i> Edit</a> |
                     <a class="text-decoration-none" asp-page="./Details" asp-route-id="@item.ProductId"> Details <i class="bi bi-list"></i></a>
 
-            </td>
-        </tr>
-}
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
-<script>
-    function search() {
-        var input = document.getElementById("searchTerm");
-        var filter = input.value.toUpperCase();
-        var table = document.getElementById("data-table");
-        var rows = table.getElementsByTagName("tr");
-        for (var i = 1; i < rows.length; i++) {
-            var cells = rows[i].getElementsByTagName("td");
-            var found = false;
-            for (var j = 0; j < cells.length; j++) {
-                var cellText = cells[j].textContent || cells[j].innerText;
-                if (cellText.toUpperCase().indexOf(filter) > -1) {
-                    found = true;
-                    break;
-                }
-            }
-            rows[i].style.display = found ? "" : "none";
-        }
-    }
 
-    // Gán sự kiện cho thanh tìm kiếm
-    var searchInput = document.getElementById("searchTerm");
-    searchInput.addEventListener("keyup", search);
+
+
+<script>
+    function sortTable(tableId, columnIndex, sortId) {
+        const sortButton = document.getElementById(sortId);
+        let ascending = true;
+        sortButton.addEventListener("click", () => {
+            const icon = sortButton.querySelector("i");
+            const table = document.getElementById(tableId);
+            const tbody = table.querySelector("tbody");
+            const rows = Array.from(tbody.querySelectorAll("tr"));
+            if (ascending) {
+                icon.classList.remove("bi-arrow-down-up");
+                icon.classList.add("bi-arrow-up");
+                rows.sort((a, b) => {
+                    const nameA = a.cells[columnIndex].textContent;
+                    const nameB = b.cells[columnIndex].textContent;
+                    return nameA.localeCompare(nameB);
+                });
+            } else {
+                icon.classList.remove("bi-arrow-up");
+                icon.classList.add("bi-arrow-down");
+                rows.sort((a, b) => {
+                    const nameA = a.cells[columnIndex].textContent;
+                    const nameB = b.cells[columnIndex].textContent;
+                    return nameB.localeCompare(nameA);
+                });
+            }
+            while (tbody.firstChild) {
+                tbody.removeChild(tbody.firstChild);
+            }
+            rows.forEach((row) => {
+                tbody.appendChild(row);
+            });
+            ascending = !ascending;
+        });
+    }
+    sortTable("data-table", 1, "sortButton1");
+ 
 </script>
+
+
 

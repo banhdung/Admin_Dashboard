@@ -9,7 +9,7 @@ namespace PRN221_Project.Models
         {
             Invoices = new HashSet<Invoice>();
         }
-
+        
         public int CustomerId { get; set; }
         public string CustomerCode { get; set; }
         public string CustomerName { get; set; }

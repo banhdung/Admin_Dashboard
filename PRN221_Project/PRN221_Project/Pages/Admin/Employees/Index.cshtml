@@ -9,27 +9,23 @@
 <h1>Employee</h1>
 
 
-<input class=" form-control-sm border border-primary rounded-pill" type="text" id="searchTerm" placeholder="Enter employees name ..." />
-<button class="btn btn-secondary text-decoration-none" type="button" onclick="search()">Search</button>
+<input class=" form-control-sm border border-primary rounded-pill" type="text" id="searchTerm" placeholder="Search..." />
+
 <p>
-    <a class="btn btn-primary" asp-page="Create">Create New</a>
+    <a class="btn btn-primary mt-2" asp-page="Create">Create New</a>
 </p>
 <a href="/admin">Back to overview</a>
-<table class="table" id="dataTable">
+<table class="table" id="data-table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Account[0].Username)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Account[0].Password)
-            </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.Account[0].Fullname)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Account[0].Designation)
-            </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.Account[0].Contact)
             </th>
@@ -45,21 +41,23 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Username)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
+          
             <td>
                 @Html.DisplayFor(modelItem => item.Fullname)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Designation)
-            </td>
+            
             <td>
                 @Html.DisplayFor(modelItem => item.Contact)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Role)
-            </td>
+                @if (item.Role == 1)
+                {
+                    <td>Admin</td>
+                }
+                @if(item.Role == 2)
+                {
+                    <td>Employee</td>
+                }
+            
             <td>
                     <a class="text-decoration-none" asp-page="./Edit" asp-route-id="@item.AccountId"> <i class="bi bi-pencil-fill"></i> Edit</a> |
                     <a class="text-decoration-none" asp-page="./Details" asp-route-id="@item.AccountId"> Details <i class="bi bi-list"></i></a>
@@ -70,25 +68,4 @@
     </tbody>
 </table>
 
-<script>
-    function search() {
-        var input = document.getElementById("searchTerm");
-        var filter = input.value.toUpperCase();
-        var table = document.getElementById("dataTable");
-        var rows = table.getElementsByTagName("tr");
-        for (var i = 1; i < rows.length; i++) {
-            var cells = rows[i].getElementsByTagName("td");
-            var found = false;
-            for (var j = 0; j < cells.length; j++) {
-                var cellText = cells[j].textContent || cells[j].innerText;
-                if (cellText.toUpperCase().indexOf(filter) > -1) {
-                    found = true;
-                    break;
-                }
-            }
-            rows[i].style.display = found ? "" : "none";
-        }
-    }
-    var searchInput = document.getElementById("searchTerm");
-    searchInput.addEventListener("keyup", search);
-</script>
+

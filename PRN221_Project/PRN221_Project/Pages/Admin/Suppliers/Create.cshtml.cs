@@ -34,6 +34,11 @@ namespace PRN221_Project.Pages.Admin.Supplliers
             {
                 return Page();
             }
+            if (_context.Suppliers.Where(x => x.SupplierCode == Supplier.SupplierCode) != null)
+            {
+                TempData["error"] = "Supplier Code existed";
+                return Redirect("/admin/suppliers/create");
+            }
 
             _context.Suppliers.Add(Supplier);
             await _context.SaveChangesAsync();

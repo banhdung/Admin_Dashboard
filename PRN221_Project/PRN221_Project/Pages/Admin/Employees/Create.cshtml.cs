@@ -35,7 +35,7 @@ namespace PRN221_Project.Pages.Admin.Employee
             {
                 return Page();
             }
-
+            Account.Role = 2; 
             _context.Accounts.Add(Account);
             await _context.SaveChangesAsync();
             TempData["success"] = "Create successfully";

@@ -1,0 +1,89 @@
+﻿@page
+@model PRN221_Project.Pages.Admin.ReceivieProducts.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Receive Products</h1>
+@{
+    var pagingmodel = new PRN221_Project.Helpers.PagingModel()
+            {
+                currentpage = Model.currentPage,
+                countpages = Model.countPages,
+                generateUrl = (int? page) => "/Admin/ReceiveProducts?p=" + page
+            };
+}
+<p>
+    <form method="get">
+        <div class="form-group">
+            <input type="text" class="form-control w-25 h-25  border border-primary rounded-pil" asp-for="SearchKeyword" placeholder="Search supplier name ...">
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Search</button>
+    </form>
+    <a asp-page="Create" >Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceiveProduct[0].Product)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceiveProduct[0].Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceiveProduct[0].UnitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceiveProduct[0].SubTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceiveProduct[0].ReceivedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceiveProduct[0].Supplier)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceiveProduct[0].Account)
+            </th>
+
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ReceiveProduct.Skip((Model.currentPage - 1) * 10).Take(10))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubTotal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReceivedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Supplier.SupplierName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Account.Fullname)
+                </td>
+
+               
+                <td>               
+                    <a asp-page="./Details" asp-route-id="@item.ReceiveProductId">Details</a>                 
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<partial name="_Paging" model="@pagingmodel"></partial>

@@ -14,8 +14,8 @@ namespace PRN221_Project.Models
         public DateTime? ReceivedDate { get; set; }
         public int? AccountId { get; set; }
 
-        public virtual Account Account { get; set; }
-        public virtual Product Product { get; set; }
-        public virtual Supplier Supplier { get; set; }
+        public virtual Account ?Account { get; set; }
+        public virtual Product ?Product { get; set; }
+        public virtual Supplier ?Supplier { get; set; }
     }
 }

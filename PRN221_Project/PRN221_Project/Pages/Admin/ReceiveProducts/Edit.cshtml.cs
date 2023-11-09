@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PRN221_Project.Models;
 
-namespace PRN221_Project.Pages.Admin.Invoices
+namespace PRN221_Project.Pages.Admin.ReceivieProducts
 {
     public class EditModel : PageModel
     {
@@ -20,23 +20,24 @@ namespace PRN221_Project.Pages.Admin.Invoices
         }
 
         [BindProperty]
-        public Invoice Invoice { get; set; } = default!;
+        public ReceiveProduct ReceiveProduct { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Invoices == null)
+            if (id == null || _context.ReceiveProducts == null)
             {
                 return NotFound();
             }
 
-            var invoice =  await _context.Invoices.FirstOrDefaultAsync(m => m.InvoiceId == id);
-            if (invoice == null)
+            var receiveproduct =  await _context.ReceiveProducts.FirstOrDefaultAsync(m => m.ReceiveProductId == id);
+            if (receiveproduct == null)
             {
                 return NotFound();
             }
-            Invoice = invoice;
+            ReceiveProduct = receiveproduct;
            ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "AccountId");
-           ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId");
+           ViewData["ProductId"] = new SelectList(_context.Products, "ProductId", "ProductId");
+           ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "SupplierId");
             return Page();
         }
 
@@ -49,7 +50,7 @@ namespace PRN221_Project.Pages.Admin.Invoices
                 return Page();
             }
 
-            _context.Attach(Invoice).State = EntityState.Modified;
+            _context.Attach(ReceiveProduct).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +58,7 @@ namespace PRN221_Project.Pages.Admin.Invoices
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!InvoiceExists(Invoice.InvoiceId))
+                if (!ReceiveProductExists(ReceiveProduct.ReceiveProductId))
                 {
                     return NotFound();
                 }
@@ -70,9 +71,9 @@ namespace PRN221_Project.Pages.Admin.Invoices
             return RedirectToPage("./Index");
         }
 
-        private bool InvoiceExists(int id)
+        private bool ReceiveProductExists(int id)
         {
-          return (_context.Invoices?.Any(e => e.InvoiceId == id)).GetValueOrDefault();
+          return (_context.ReceiveProducts?.Any(e => e.ReceiveProductId == id)).GetValueOrDefault();
         }
     }
 }

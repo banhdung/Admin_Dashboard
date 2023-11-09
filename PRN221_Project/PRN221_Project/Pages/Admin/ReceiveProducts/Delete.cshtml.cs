@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using PRN221_Project.Models;
 
-namespace PRN221_Project.Pages.Admin.Invoices
+namespace PRN221_Project.Pages.Admin.ReceivieProducts
 {
     public class DeleteModel : PageModel
     {
@@ -19,40 +19,40 @@ namespace PRN221_Project.Pages.Admin.Invoices
         }
 
         [BindProperty]
-      public Invoice Invoice { get; set; } = default!;
+      public ReceiveProduct ReceiveProduct { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Invoices == null)
+            if (id == null || _context.ReceiveProducts == null)
             {
                 return NotFound();
             }
 
-            var invoice = await _context.Invoices.FirstOrDefaultAsync(m => m.InvoiceId == id);
+            var receiveproduct = await _context.ReceiveProducts.FirstOrDefaultAsync(m => m.ReceiveProductId == id);
 
-            if (invoice == null)
+            if (receiveproduct == null)
             {
                 return NotFound();
             }
             else 
             {
-                Invoice = invoice;
+                ReceiveProduct = receiveproduct;
             }
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.Invoices == null)
+            if (id == null || _context.ReceiveProducts == null)
             {
                 return NotFound();
             }
-            var invoice = await _context.Invoices.FindAsync(id);
+            var receiveproduct = await _context.ReceiveProducts.FindAsync(id);
 
-            if (invoice != null)
+            if (receiveproduct != null)
             {
-                Invoice = invoice;
-                _context.Invoices.Remove(Invoice);
+                ReceiveProduct = receiveproduct;
+                _context.ReceiveProducts.Remove(ReceiveProduct);
                 await _context.SaveChangesAsync();
             }
 

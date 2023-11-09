@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\banhdung\\Desktop\\PRN221_Project\\PRN221_Project\\PRN221_Project\\wwwroot\\js\\common.js",
+      "PackagePath": "staticwebassets\\js\\common.js"
+    },
+    {
       "Id": "C:\\Users\\banhdung\\Desktop\\PRN221_Project\\PRN221_Project\\PRN221_Project\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

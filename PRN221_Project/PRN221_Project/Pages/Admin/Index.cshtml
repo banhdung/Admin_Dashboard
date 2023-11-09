@@ -66,13 +66,18 @@
                 <p class="card-text"></p>
             </div>
             <div class="card-body">
-                <a class="card-title text-decoration-none" href="/admin/employees"><i class="bi bi-person text-primary fs-5"></i>   Employees</a>
+                <a class="card-title text-decoration-none" href="/admin/employees"><i class="bi bi-person-check text-primary fs-5"></i>   Employees</a>
                 <p class="card-text"></p>
             </div>
             <div class="card-body">
                 <a class="card-title text-decoration-none" href="/admin/suppliers"><i class="bi bi-plus-circle text-primary"></i>   Suppliers</a>
                 <p class="card-text"></p>
             </div>
+            <div class="card-body">
+                <a class="card-title text-decoration-none" href="/admin/ReceiveProducts"><i class="bi-archive text-primary"></i>   Receive</a>
+                <p class="card-text"></p>
+            </div>
+           
 
         </div>
     </div>
@@ -91,7 +96,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Product Sold</h5>
-                        <p class="card-text">50</p>
+                        <p class="card-text">Today: @Model.TodayProductSold -Total: @Model.TotalProductSold</p>
                     </div>
                 </div>
             </div>
@@ -268,17 +273,18 @@
         });
 
         // Category Chart
+
         var categoryCtx = document
             .getElementById("categoryChart")
             .getContext("2d");
         var categoryChart = new Chart(categoryCtx, {
             type: "doughnut",
             data: {
-                labels: ["Electronics", "Clothing", "Books", "Beauty"],
+                labels: ["@Model.BestSellingCategory", "@Model.SecondBestSellingCategory", "@Model.ThirdBestSellingCategory", "Other"],
                 datasets: [
                     {
-                        label: "Categories",
-                        data: [100, 25, 15, 20],
+                        label: "Product Sold",
+                        data: [@Model.BestProductsSold,@Model.SecondProductsSold,@Model.ThirdProductsSold, @Model.OtherProductSold],
                         backgroundColor: ["#007bff", "#dc3545", "#ffc107", "#28a745"],
                     },
                 ],

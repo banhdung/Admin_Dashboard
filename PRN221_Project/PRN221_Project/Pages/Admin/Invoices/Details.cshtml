@@ -15,20 +15,21 @@
             @Html.DisplayNameFor(model => model.Invoice.PaymentType)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Invoice.PaymentType)
+            @if(Model.Invoice.PaymentType == 1)
+            {
+               <div>Cash</div>
+            }
+            else
+            {
+               <div>Transfer</div>
+            }
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Invoice.TotalAmount)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Invoice.TotalAmount)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Invoice.AmountTendered)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Invoice.AmountTendered)
-        </dd>
+        </dd>    
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Invoice.BankAccountName)
         </dt>
@@ -51,13 +52,13 @@
             @Html.DisplayNameFor(model => model.Invoice.Account)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Invoice.Account.AccountId)
+            @Html.DisplayFor(model => model.Invoice.Account.Fullname)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Invoice.Customer)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Invoice.Customer.CustomerId)
+            @Html.DisplayFor(model => model.Invoice.Customer.CustomerName)
         </dd>
     </dl>
 </div>
