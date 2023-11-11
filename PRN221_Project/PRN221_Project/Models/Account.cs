@@ -16,14 +16,14 @@ namespace PRN221_Project.Models
         
         public int AccountId { get; set; }
         [MaxLength(30 , ErrorMessage ="must be less than 30 ")]
-        [MinLength(5)]
+        [MinLength(1)]
         public string Username { get; set; }
         public string Password { get; set; }
 
-        [StringLength(30,MinimumLength = 0)]
+        [StringLength(30,MinimumLength = 1)]
         public string Fullname { get; set; }
         public int? Designation { get; set; }
-
+        [StringLength(30, MinimumLength = 1)]
         [EmailAddress(ErrorMessage ="Email not valid")]
         public string Contact { get; set; }
         public int? Role { get; set; }

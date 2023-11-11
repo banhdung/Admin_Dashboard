@@ -146,8 +146,15 @@
                         @foreach(var item in @Model.recentInvoices){
                             <tr>
                                 <td>@item.InvoiceId</td>
-                                <td>@item.Customer.CustomerName</td>
-                                <td>@item.DateRecorded.Date</td>
+                                @if(item.Customer != null)
+                                {
+                                    <td>@item.Customer.CustomerName</td>
+                                }
+                                else{
+
+                                    <td></td>
+                                    }
+                                    <td>@item.DateRecorded.Date</td>
                                 <td>@item.TotalAmount</td>
                             </tr>                          
                         }
